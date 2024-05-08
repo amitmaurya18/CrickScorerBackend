@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name= "crick_match")
+@Table(name= "cricket")
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +48,83 @@ public class Match {
         }
     }
 
+    public void setMatchId(String battingTeam) {
+        this.matchId= matchId;
+    }
+
+    public String getMatchId() {
+        return String.valueOf(matchId);
+    }
+
+    public void setTeamHeading(String teamHeading) {
+        this.teamHeading = teamHeading;
+    }
+
+    public String getTeamHeading() {
+        return teamHeading;
+    }
+
+    public void setMatchNumberVenue(String matchNumberVenue) {
+        this.matchNumberVenue = matchNumberVenue;
+    }
+
+    public String getMatchNumberVenue() {
+        return matchNumberVenue;
+    }
+
+    public void setBattingTeam(String battingTeam) {
+        this.battingTeam = battingTeam;
+    }
+
+    public String getBattingTeam() {
+        return battingTeam;
+    }
+
+    public void setBattingTeamScore(String battingTeamScore) {
+        this.battingTeamScore = battingTeamScore;
+    }
+
+    public String getBattingTeamScore() {
+        return battingTeamScore;
+    }
+
+    public void setBowlTeam(String bowlTeam) {
+        this.bowlTeam = bowlTeam;
+    }
+
+    public String getBowlTeam() {
+        return bowlTeam;
+    }
+
+    public void setBowlTeamScore(String bowlTeamScore) {
+        this.bowlTeamScore = bowlTeamScore;
+    }
+
+    public String getBowlTeamScore() {
+        return bowlTeamScore;
+    }
+
+    public void setLiveText(String liveText) {
+        this.liveText = liveText;
+    }
+
+    public String getLiveText() {
+        return liveText;
+    }
+
+    public void setMatchLink(String matchLink) {
+        this.matchLink = matchLink;
+    }
+
+    public String getMatchLink() {
+        return matchLink;
+    }
+
+    public void setTextComplete(String textComplete) {
+        this.textComplete = textComplete;
+    }
+
+    public String getTextComplete() {
+        return textComplete;
+    }
 }

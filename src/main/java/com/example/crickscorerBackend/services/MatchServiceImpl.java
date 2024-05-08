@@ -74,7 +74,7 @@ public class MatchServiceImpl implements MatchService{
         return matches;
     }
 
-    private void updateMatch(Match match1) {
+    /*private void updateMatch(Match match1) {
 
         Match match = this.matchRepo.findByTeamHeading(match1.getTeamHeading()).orElse(null);
         if (match == null) {
@@ -85,7 +85,26 @@ public class MatchServiceImpl implements MatchService{
             this.matchRepo.save(match1);
         }
 
+    }*/
+
+    private void updateMatch(Match match1) {
+        Match existingMatch = this.matchRepo.findByTeamHeading(match1.getTeamHeading()).orElse(null);
+        if (existingMatch != null) {
+            // Update existing match
+            existingMatch.setBattingTeam(match1.getBattingTeam());
+            existingMatch.setBattingTeamScore(match1.getBattingTeamScore());
+            existingMatch.setBowlTeam(match1.getBowlTeam());
+            existingMatch.setBowlTeamScore(match1.getBowlTeamScore());
+            existingMatch.setLiveText(match1.getLiveText());
+            existingMatch.setMatchLink(match1.getMatchLink());
+            existingMatch.setTextComplete(match1.getTextComplete());
+            this.matchRepo.save(existingMatch);
+        } else {
+            // Save new match
+            this.matchRepo.save(match1);
+        }
     }
+
 
     @Override
     public List<List<String>> getCWC2023PointTable() {
