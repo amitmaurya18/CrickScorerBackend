@@ -108,8 +108,8 @@ public class MatchServiceImpl implements MatchService{
 
     @Override
     public List<List<String>> getCWC2023PointTable() {
-        List<List<String>> pointTable = new ArrayList<>();
-        String tableURL = "https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/points-table";
+        List<List<String>> pointTableCWC = new ArrayList<>();
+        String tableURL = "https://www.cricbuzz.com/cricket-series/6732/icc-cricket-world-cup-2023/points-table";
         try {
             Document document = Jsoup.connect(tableURL).get();
             Elements table = document.select("table.cb-srs-pnts");
@@ -118,7 +118,7 @@ public class MatchServiceImpl implements MatchService{
             tableHeads.forEach(element -> {
                 headers.add(element.text());
             });
-            pointTable.add(headers);
+            pointTableCWC.add(headers);
             Elements bodyTrs = table.select("tbody>*");
             bodyTrs.forEach(tr -> {
                 List<String> points = new ArrayList<>();
@@ -132,16 +132,94 @@ public class MatchServiceImpl implements MatchService{
                         }
                     });
 //                    System.out.println(points);
-                    pointTable.add(points);
+                    pointTableCWC.add(points);
                 }
 
 
             });
 
-            System.out.println(pointTable);
+            System.out.println(pointTableCWC);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return pointTable;
+        return pointTableCWC;
+    }
+
+    @Override
+    public List<List<String>> getIPL2024PointTable() {
+        List<List<String>> pointTableIPL = new ArrayList<>();
+        String tableURL = "https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/points-table";
+        try {
+            Document document = Jsoup.connect(tableURL).get();
+            Elements table = document.select("table.cb-srs-pnts");
+            Elements tableHeads = table.select("thead>tr>*");
+            List<String> headers = new ArrayList<>();
+            tableHeads.forEach(element -> {
+                headers.add(element.text());
+            });
+            pointTableIPL.add(headers);
+            Elements bodyTrs = table.select("tbody>*");
+            bodyTrs.forEach(tr -> {
+                List<String> points = new ArrayList<>();
+                if (tr.hasAttr("class")) {
+                    Elements tds = tr.select("td");
+                    String team = tds.get(0).select("div.cb-col-84").text();
+                    points.add(team);
+                    tds.forEach(td -> {
+                        if (!td.hasClass("cb-srs-pnts-name")) {
+                            points.add(td.text());
+                        }
+                    });
+//                    System.out.println(points);
+                    pointTableIPL.add(points);
+                }
+
+
+            });
+
+            System.out.println(pointTableIPL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pointTableIPL;
+    }
+
+    @Override
+    public List<List<String>> getWTC2025PointTable() {
+        List<List<String>> pointTableWTC = new ArrayList<>();
+        String tableURL = "https://www.cricbuzz.com/cricket-stats/points-table/test/icc-world-test-championship";
+        try {
+            Document document = Jsoup.connect(tableURL).get();
+            Elements table = document.select("table.cb-srs-pnts");
+            Elements tableHeads = table.select("thead>tr>*");
+            List<String> headers = new ArrayList<>();
+            tableHeads.forEach(element -> {
+                headers.add(element.text());
+            });
+            pointTableWTC.add(headers);
+            Elements bodyTrs = table.select("tbody>*");
+            bodyTrs.forEach(tr -> {
+                List<String> points = new ArrayList<>();
+                if (tr.hasAttr("class")) {
+                    Elements tds = tr.select("td");
+                    String team = tds.get(0).select("div.cb-col-84").text();
+                    points.add(team);
+                    tds.forEach(td -> {
+                        if (!td.hasClass("cb-srs-pnts-name")) {
+                            points.add(td.text());
+                        }
+                    });
+//                    System.out.println(points);
+                    pointTableWTC.add(points);
+                }
+
+
+            });
+
+            System.out.println(pointTableWTC);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pointTableWTC;
     }
 }

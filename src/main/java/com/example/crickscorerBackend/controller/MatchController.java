@@ -29,9 +29,19 @@ public class MatchController {
         return new ResponseEntity<>(this.matchService.getLiveMatchScores(), HttpStatus.OK);
     }
 
-    @GetMapping("/point-table")
+    @GetMapping("/point-table-cwc")
     public ResponseEntity<?> getCWC2023PointTable() {
         return new ResponseEntity<>(this.matchService.getCWC2023PointTable(), HttpStatus.OK);
+    }
+
+    @GetMapping("/point-table-ipl")
+    public ResponseEntity<?> getIPL2024PointTable() {
+        return new ResponseEntity<>(this.matchService.getIPL2024PointTable(), HttpStatus.OK);
+    }
+
+    @GetMapping("/point-table-wtc")
+    public ResponseEntity<?> getWTC2025PointTable() {
+        return new ResponseEntity<>(this.matchService.getWTC2025PointTable(), HttpStatus.OK);
     }
 
     @GetMapping

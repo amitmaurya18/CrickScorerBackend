@@ -8,5 +8,6 @@ public interface MatchService {
     List<Match> getAllMatches();
     List<Match> getLiveMatchScores();
     List<List<String>> getCWC2023PointTable();
-
+    List<List<String>> getIPL2024PointTable();
+    List<List<String>> getWTC2025PointTable();
 }
